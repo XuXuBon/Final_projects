@@ -1,6 +1,5 @@
 package com.example.final_projects;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,11 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private Context dData;
+    //天氣功能使用Recycler的陣列
     private ArrayList<Post> mData ;
 
-    public MyAdapter(Context context ,ArrayList<Post> data) {
+    public MyAdapter(ArrayList<Post> data) {
         this.mData = data;
-        this.dData = context;
     }
 
     @Override
@@ -27,13 +25,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 .inflate(R.layout.weather_list_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
 
+        //連接各個元件
         holder.day = (TextView) view.findViewById(R.id.day);
         holder.description = (TextView) view.findViewById(R.id.description);
-        holder.high = (TextView) view.findViewById(R.id.high);
         holder.low = (TextView) view.findViewById(R.id.low);
+        holder.high = (TextView) view.findViewById(R.id.high);
         holder.precip = (TextView) view.findViewById(R.id.precip);
         holder.humidity = (TextView) view.findViewById(R.id.humidity);
-
         return holder;
     }
 
@@ -45,15 +43,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.day.setText(post.day);
         // 設置description要顯示的內容
         holder.description.setText(post.description);
+        // 設low要顯示的內容
+        holder.low.setText(post.low);
         // 設置high要顯示的內容
         holder.high.setText(post.high);
-        // 設置low要顯示的內容
-        holder.low.setText(post.low);
         // 設置precip要顯示的內容
         holder.precip.setText(post.precip);
         // 設置humidity要顯示的內容
         holder.humidity.setText(post.humidity);
-
     }
 
     @Override
@@ -66,8 +63,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // 宣告元件
         public TextView day;
         public TextView description;
-        public TextView high;
         public TextView low;
+        public TextView high;
         public TextView precip;
         public TextView humidity;
 
